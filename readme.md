@@ -1,1 +1,1 @@
-### extra rendszerfunkciók kihagyva
+extra rendszerfunkciókat kihagytam
