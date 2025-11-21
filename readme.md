@@ -1,0 +1,1 @@
+# extra rendszerfunkciók kihagyva

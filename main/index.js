@@ -20,6 +20,7 @@ app.use((req, res, next) => {
         time: new Date().toTimeString()
     }
     console.log(reqdata);
+    
     next()
 })
 

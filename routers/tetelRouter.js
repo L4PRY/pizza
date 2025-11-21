@@ -15,12 +15,12 @@ tetel.get('/:razon', async (req,res) => {
 
 tetel.post('/', async (req,res) => {
     try {
-        const { vnev,vcim } = req.body;
-        if (vnev.Length < 3 || vcim < 3) {
+        const { razon,pazon,db } = req.body;
+        if ( db < 1) {
             res.status(404).json({ error: "Az adatok nem teljesek." })
 
         } else {
-            await tetelModel.createTetel(vnev,vcim);
+            await tetelModel.createTetel(razon,pazon,db);
             res.status(201).json({ msg: "Tétel sikeresen hozzátoldva az adatbázishoz."})
         }
     } catch (error) {
@@ -28,25 +28,28 @@ tetel.post('/', async (req,res) => {
     }
 });
 
-tetel.put('/:vazon', async (req,res) => {
+tetel.put('/:razon/:pazon', async (req,res) => {
     try {
-        const vazon = req.params.vazon;
-        const { vnev,vcim } = req.body;
-        if (vazon.Length<1 || vnev.Length<1 || vcim.Length<1) {
+        const razon = req.params.razon;
+        const pazon = req.params.pazon;
+        const { db } = req.body;
+        if (db < 1) {
             res.status(404).json({ error: "Az adatok nem teljesek." })
 
         } else {
-            await tetelModel.editTetel(vnev,vcim,vazon);
-            res.status(201).json({ msg: "Tétel adatai sikeresen megváltoztatva."})
+            await tetelModel.editTetel(razon,pazon,db);
+            res.status(201).json({ msg: "Tétel sikeresen megváltoztatva."})
         }
     } catch (error) {
         res.status(501).json({ error: error.toString() })
     }
 });
 
-tetel.delete('/:vazon', async (req,res) => {
+tetel.delete('/:razon/:pazon', async (req,res) => {
     try {
-        await tetelModel.deleteTetel(req.params.vazon);
+        const razon = req.params.razon;
+        const pazon = req.params.pazon;
+        await tetelModel.deleteTetel(req.params.razon,req.params.pazon);
         res.status(201).json({ msg: "Tétel adatai sikeresen kitörölve."})
     } catch (error) {
         res.status(501).json({ error: error.toString() })

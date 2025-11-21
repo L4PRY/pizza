@@ -14,6 +14,6 @@ export const editTetel = async (razon,pazon,db) => {
     await pool.execute("UPDATE `tetel` SET tetel.db=? WHERE tetel.razon=? AND tetel.pazon=?", [db,razon,pazon]);
 };
 
-export const deleteTetel = async (id) => {
-    await pool.execute("DELETE FROM `tetel` WHERE tetel.razon=? AND tetel.pazon=?", [id]);
+export const deleteTetel = async (razon,pazon) => {
+    await pool.execute("DELETE FROM `tetel` WHERE tetel.razon=? AND tetel.pazon=?", [razon,pazon]);
 };
